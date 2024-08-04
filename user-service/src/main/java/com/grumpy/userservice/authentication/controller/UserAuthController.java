@@ -1,4 +1,4 @@
-package com.grumpy.userservice.controller;
+package com.grumpy.userservice.authentication.controller;
 
 import com.grumpy.userservice.authentication.model.AuthenticationRequest;
 import com.grumpy.userservice.authentication.model.AuthenticationResponse;
@@ -21,7 +21,7 @@ import static com.grumpy.userservice.constant.UserUrlConstant.*;
 @RequestMapping(V1 + USER_BASE_URL + AUTHENTICATION)
 @RequiredArgsConstructor
 @Slf4j
-public class UserController {
+public class UserAuthController {
 
     private final AuthenticationService authenticationService;
 
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping(value = LOGIN_IN, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AuthenticationResponse> createUser(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<AuthenticationResponse> loginUser(@RequestBody AuthenticationRequest request) {
         log.debug("logging in user: {}", request.getUsername());
         return new ResponseEntity<>(authenticationService.loginUser(request), HttpStatus.OK);
     }
